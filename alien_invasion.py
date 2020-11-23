@@ -33,6 +33,13 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+
+            # 删除消失的子弹
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+            print(len(self.bullets))
+
             # 每次循环时都重绘屏幕
             self._update_screen()
             # self.screen.fill(self.settings.bg_color)
