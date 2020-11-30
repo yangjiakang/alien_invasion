@@ -4,6 +4,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 
 class AlienInvasion:
@@ -21,6 +22,9 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
 
 
         # 设置背景色
@@ -76,6 +80,7 @@ class AlienInvasion:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.screen)
         # 让最近绘制的屏幕可见
         pygame.display.flip()
 
@@ -103,8 +108,11 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
-
-
+    def _create_fleet(self):
+        """创建外星人群"""
+        # 创建一个外星人
+        alien = Alien(self)
+        self.aliens.add(alien)
 
 # name指的是这个模块，当直接运行的时候模块的名字叫main。当作为导入模块的时候不会被直接执行
 if __name__ == '__main__':
