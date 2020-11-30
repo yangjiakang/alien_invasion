@@ -87,8 +87,10 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """创建一颗子弹，并将其加入编组bullets中"""
+        if len(self.bullets) < self.settings.bullets_allowed:
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
+
 
 
 # name指的是这个模块，当直接运行的时候模块的名字叫main。当作为导入模块的时候不会被直接执行
