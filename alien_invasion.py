@@ -37,6 +37,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             # self.bullets.update()
 
             # 删除消失的子弹
@@ -137,6 +138,10 @@ class AlienInvasion:
         alien.rect.x = alien.x
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
+
+    def _update_aliens(self):
+        """更新外星人群中所有外星人的位置"""
+        self.aliens.update()
 # name指的是这个模块，当直接运行的时候模块的名字叫main。当作为导入模块的时候不会被直接执行
 if __name__ == '__main__':
     # 创建游戏实例并运行游戏

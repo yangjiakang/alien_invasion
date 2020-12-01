@@ -18,3 +18,9 @@ class Alien(Sprite):
 
         # 存储外星人的精确水平位置
         self.x = float(self.rect.x)
+        self.settings = ai_game.settings
+
+    def update(self):
+        """向右移动外星人"""
+        self.x += self.settings.alien_speed
+        self.rect.x = self.x
