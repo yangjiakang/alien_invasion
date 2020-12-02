@@ -71,9 +71,17 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-        print(len(self.bullets))
-        collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
+        self._check_bullet_alien_collisions()
 
+    def _check_bullet_alien_collisions(self):
+        """响应子弹和外星人碰撞"""
+        # 检查是否有子弹击中了外星人
+        # 如果是，就删除相应的子弹和外星人
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+        if not self.aliens:
+            # 删除现有的子弹并新建一群外星人
+            self.bullets.empty()
+            self._create_fleet()
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
@@ -144,6 +152,11 @@ class AlienInvasion:
         """检查是否有外星人位于屏幕边缘，更新整群外星人的位置"""
         self._check_fleet_edges()
         self.aliens.update()
+
+        # 检测外星人和飞船之间的碰撞
+        if pygame.sprite.spritecollideany(self.ship,self.aliens):
+            print("Ship hit!!!")
+
 
     def _check_fleet_edges(self):
         """有外星人到达边缘"""
