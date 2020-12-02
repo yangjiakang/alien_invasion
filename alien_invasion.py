@@ -109,6 +109,7 @@ class AlienInvasion:
             # 删除现有的子弹并新建一群外星人
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
