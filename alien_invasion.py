@@ -72,6 +72,7 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
         print(len(self.bullets))
+        collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
 
 
     def _update_screen(self):
@@ -148,7 +149,7 @@ class AlienInvasion:
         """有外星人到达边缘"""
         for alien in self.aliens.sprites():
             if alien.check_edges():
-                self._check_direction()
+                self._check_fleet_direction()
                 break
 
 
